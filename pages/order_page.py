@@ -18,6 +18,7 @@ class OrderPage(BasePage):
     GREY_CHECKBOX = (By.ID, "grey")
     COMMENT_INPUT = (By.XPATH, "//input[@placeholder='Комментарий для курьера']")
     ORDER_BUTTON = (By.XPATH, "//div[contains(@class,'Order_Buttons')]//button[not(contains(@class,'Inverted')) and text()='Заказать']")
+    ORDER_HEADER = (By.XPATH, "//div[contains(@class,'Order_Header')]")
     
     CONFIRM_BUTTON = (By.XPATH, "//button[text()='Да']")
     SUCCESS_HEADER = (By.XPATH, "//div[contains(@class,'Order_ModalHeader')]")
@@ -34,7 +35,7 @@ class OrderPage(BasePage):
 
     def fill_step2(self, date, rent_period, color, comment):
         self.send_keys(self.DATE_INPUT, date)
-        self.driver.find_element(By.XPATH, "//div[contains(@class,'Order_Header')]").click()
+        self.click(self.ORDER_HEADER)
         self.click(self.RENT_DROPDOWN)
         rent_locator = (By.XPATH, self.RENT_OPTION[1].format(rent_period))
         self.click(rent_locator)

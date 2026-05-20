@@ -27,18 +27,11 @@ class MainPage(BasePage):
         self.click(self.ORDER_BUTTON_TOP)
 
     def click_order_bottom(self):
-        locator = self.ORDER_BUTTON_BOTTOM
-        element = self.find(locator)
-        self.driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", element)
-        self.driver.execute_script("arguments[0].click();", element)
-
+        self.click_by_js(self.ORDER_BUTTON_BOTTOM)
 
     def click_faq(self, index):
         locator = (By.XPATH, self.FAQ_QUESTION[1].format(index))
-        element = self.find(locator)
-
-        self.driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", element)
-        self.driver.execute_script("arguments[0].click();", element)
+        self.click_by_js(locator)
 
     def get_faq_answer(self, index):
         locator = (By.XPATH, self.FAQ_ANSWER[1].format(index))
